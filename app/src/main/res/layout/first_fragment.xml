@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
+    <ImageView
+        android:id="@+id/bing_pic_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -44,7 +49,6 @@
             </ScrollView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
 
 
     </android.support.v4.widget.DrawerLayout>

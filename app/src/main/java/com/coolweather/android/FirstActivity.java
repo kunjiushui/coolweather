@@ -54,6 +54,7 @@ public class FirstActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_first);
 
+
         //实例化
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -80,7 +81,8 @@ public class FirstActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        FirstFragment firstFragment=(FirstFragment)getSupportFragmentManager().findFragmentById(R.id.drawer_layout);
+
+
 
 
     }
