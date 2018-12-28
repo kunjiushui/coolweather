@@ -44,7 +44,6 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
 
 
-    private Button navButton;
 
 
 
@@ -122,7 +121,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
         drawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
 
-        navButton = (Button) view.findViewById(R.id.nav_button);
+
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -163,17 +162,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
         });
 
-        navButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-
-            public void onClick(View v) {
-
-                drawerLayout.openDrawer(GravityCompat.START);
-
-            }
-
-        });
 
         String bingPic = prefs.getString("bing_pic", null);
 
@@ -190,18 +179,6 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         return view;
 
     }
-
-    public void refresh(){
-
-
-
-    }
-
-
-
-
-
-
 
     /**
 
