@@ -2,16 +2,22 @@ package com.coolweather.android;
 
 
 
+import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.icu.util.IslamicCalendar;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.app.FragmentManager;
 
 import android.support.v4.app.FragmentPagerAdapter;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 
@@ -30,6 +36,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
 import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
@@ -45,7 +54,6 @@ import okhttp3.Response;
 
 
 public class FirstActivity extends AppCompatActivity {
-
 
     private TabLayout tabLayout;
 
@@ -70,14 +78,9 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_first);
-
-
         //实例化
-
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         cehuaButton = (Button) findViewById(R.id.cehua_button);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -89,28 +92,19 @@ public class FirstActivity extends AppCompatActivity {
         });
 
         //页面，数据源
-
         list = new ArrayList<>();
-
         list.add(new FirstFragment());
-
         list.add(new SecondFragment());
 
-
-
         //ViewPager的适配器
-
         adapter = new MyAdapter(getSupportFragmentManager());
-
         viewPager.setAdapter(adapter);
 
         //绑定
-
         tabLayout.setupWithViewPager(viewPager);
 
-
-
     }
+
 
     private void showDrawerLayout() {
         if (!drawerLayout.isDrawerOpen(Gravity.LEFT)) {

@@ -113,6 +113,7 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
+
         String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
             Glide.with(this).load(bingPic).into(bingPicImg);
@@ -122,7 +123,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     /**
-     * 根据天气id请求城市天气信息。
+     * 根据天气id请求城市天气信息。URL
      */
     public void requestWeather(final String weatherId) {
         String weatherUrl = "http://guolin.tech/api/weather?cityid="+weatherId+"&key=dc6f30eba6ae4cb0a8d96a52bccbfa79";
@@ -130,7 +131,7 @@ public class WeatherActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
-                final Weather weather = Utility.handleWeatherResponse(responseText);
+                final Weather weather = Utility.handleWeatherResponse(responseText);//
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

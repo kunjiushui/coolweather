@@ -37,11 +37,11 @@
 
         <Button
             android:id="@+id/cehua_button"
-            android:layout_width="30dp"
+            android:layout_width="26dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/ic_home" />
 
 
@@ -65,6 +65,13 @@
 
     </LinearLayout>
 
+        <android.support.design.widget.CoordinatorLayout
+
+            android:id="@+id/coord"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent">
 
 
 
@@ -74,11 +81,23 @@
 
         android:layout_width="match_parent"
 
-        android:layout_height="0dp"
+        android:layout_height="match_parent">
 
-        android:layout_weight="1">
+
 
     </android.support.v4.view.ViewPager>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30dp"
+            android:src="@mipmap/icon_fl"
+            android:backgroundTint="#7CCD7C"/>
+        </android.support.design.widget.CoordinatorLayout>
+
 
     </LinearLayout>
         <fragment
@@ -90,5 +109,8 @@
             />
 
     </android.support.v4.widget.DrawerLayout>
+
+
+
 
 </LinearLayout>
