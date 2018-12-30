@@ -44,6 +44,9 @@ public class SecondFragment extends Fragment {
 
 
     }
+
+
+    //获取每日一图
     private void loadBingPic() {
 
         String requestBingPic = "http://guolin.tech/api/bing_pic";

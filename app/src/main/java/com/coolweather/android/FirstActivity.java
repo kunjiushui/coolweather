@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.icu.util.IslamicCalendar;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +22,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 
@@ -67,7 +71,7 @@ public class FirstActivity extends AppCompatActivity {
 
     private Button cehuaButton;
     public DrawerLayout drawerLayout;
-
+    private FloatingActionButton mFab;
 
 
 
@@ -90,7 +94,8 @@ public class FirstActivity extends AppCompatActivity {
                 showDrawerLayout();
             }
         });
-
+        mFab = (FloatingActionButton)findViewById(R.id.fab);
+        mFab.hide();
         //页面，数据源
         list = new ArrayList<>();
         list.add(new FirstFragment());
@@ -102,7 +107,16 @@ public class FirstActivity extends AppCompatActivity {
 
         //绑定
         tabLayout.setupWithViewPager(viewPager);
-
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener()
+        {
+            public void onPageSelected(int position) {
+                if (position==0) {
+                    mFab.hide();
+                } else {
+                    mFab.show();
+                }
+            }
+        });
     }
 
 
@@ -154,6 +168,9 @@ public class FirstActivity extends AppCompatActivity {
             return titles[position];
 
         }
+
+
+
 
     }
 
