@@ -404,7 +404,6 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
     }
 
-
     /**
 
      * 加载必应每日一图
