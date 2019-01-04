@@ -1,6 +1,8 @@
 package com.coolweather.android;
 
-public class CityInfo {
+import org.litepal.crud.DataSupport;
+
+public class CityInfo extends DataSupport {
     public String city;
     public String temp;
     public String cond;

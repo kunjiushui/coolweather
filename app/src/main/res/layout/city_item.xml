@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="未知"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="20dp"
                 android:textColor="#ffff"
                 android:textSize="24sp" />
             <ImageView

@@ -155,16 +155,7 @@ public class FirstActivity extends AppCompatActivity {
                             //Toast.makeText(FirstActivity.this,cityName+degree+weatherInfo,Toast.LENGTH_SHORT).show();
                             SecondFragment secondFragment=new SecondFragment();
                             secondFragment.initList(cityName,degree,weatherInfo);
-                            /*CityInfo cityInfo=new CityInfo();
-                            cityInfo.setCond(weatherInfo);
-                            cityInfo.setCity(cityName);
-                            cityInfo.setTemp(degree);
-                            cityInfo.setImageId(R.mipmap.sunny);
-                            RecyclerView mRecy = (RecyclerView)findViewById(R.id.recyclerview);
-                            LinearLayoutManager layoutManager=new LinearLayoutManager(FirstActivity.this);
-                            mRecy.setLayoutManager(layoutManager);
-                            City_Adapter adapter1=new City_Adapter(cityInfoList);
-                            adapter1.addItem(cityInfoList.size(),cityInfo);*/
+
 
                         } else {
                             Toast.makeText(FirstActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
@@ -187,7 +178,11 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
     }
-
+    public static void actionStart(Context context,String city){
+        Intent intent=new Intent(context,FirstActivity.class);
+        intent.putExtra("weathercity",city);
+        context.startActivity(intent);
+    }
 
 
 

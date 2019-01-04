@@ -40,7 +40,14 @@ public class City_Adapter extends RecyclerView.Adapter<City_Adapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.city_item,parent,false);
-        ViewHolder holder=new ViewHolder(view);
+        final ViewHolder holder=new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CityInfo cityInfo=mData.get(holder.getAdapterPosition());
+                FirstActivity.actionStart(view.getContext(),cityInfo.getCity());
+            }
+        });
         return holder;
     }
 

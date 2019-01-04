@@ -64,6 +64,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     private TextView sportText;
     private ImageView bingPicImg;
     private String mWeatherId;
+    private String weathcity;
     private View view;
     public LocationClient mLocationClient;
     /**
@@ -119,17 +120,23 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         } else {*/
 
             // 无缓存时去服务器查询天气
+            weathcity=getActivity().getIntent().getStringExtra("weathercity");
+           if(weathcity!=null)
+           {
+               requestWeatherbyName(weathcity);
+               weathcity=null;
+           }
+           else {
+               mWeatherId = getActivity().getIntent().getStringExtra("weather_id");
+               //Toast.makeText(getActivity(), mWeatherId, Toast.LENGTH_SHORT).show();
+               weatherLayout.setVisibility(View.INVISIBLE);
+               if (mWeatherId != null) {
+                   //mWeatherId="CN101300101";
 
-            mWeatherId = getActivity().getIntent().getStringExtra("weather_id");
-            //Toast.makeText(getActivity(), mWeatherId, Toast.LENGTH_SHORT).show();
-            weatherLayout.setVisibility(View.INVISIBLE);
-            if (mWeatherId != null) {
-                //mWeatherId="CN101300101";
 
-
-                requestWeather(mWeatherId);
-            }
-
+                   requestWeather(mWeatherId);
+               }
+           }
 
 
 

@@ -25,6 +25,8 @@ import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
 
+import org.litepal.crud.DataSupport;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +53,7 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         View view = inflater.inflate(R.layout.second_fragment, container, false);
-        /*CityInfo c1=new CityInfo();
-        c1.setCity("asfas");
-        c1.setTemp("aa3");
-        c1.setCond("afagadgds");
-        c1.setImageId(R.mipmap.sunny);
-        cityInfoList.add(c1);
-*/
+
 
         mRecy = (RecyclerView)view.findViewById(R.id.recyclerview);
         layoutManager=new LinearLayoutManager(getActivity());
@@ -65,7 +61,7 @@ public class SecondFragment extends Fragment {
         adapter=new City_Adapter(cityInfoList);
 
         mRecy.setAdapter(adapter);
-        //initList2();
+        initList2();
         //bingPicImg2 = (ImageView) view.findViewById(R.id.bing_pic_img2);
         swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh1);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
@@ -90,8 +86,9 @@ public class SecondFragment extends Fragment {
                             c2.setImageId(R.mipmap.cloudytosunny);
                         else if(con.contains("阴"))
                             c2.setImageId(R.mipmap.cloudy);
+                        c2.save();
                         adapter.addItem(cityInfoList.size(),c2);
-                        //cityInfoList.add(c2);
+
                         swipeRefresh.setRefreshing(false);
                         //Toast.makeText(getActivity(),"sdgsdhshsdh",Toast.LENGTH_SHORT).show();
                     }
@@ -103,7 +100,12 @@ public class SecondFragment extends Fragment {
         return view;
 
     }
-
+    public void initList2(){
+      List<CityInfo> cityInfos=DataSupport.findAll(CityInfo.class);
+      for(CityInfo cityInfo:cityInfos){
+          cityInfoList.add(cityInfo);
+      }
+    }
     public void initList(String city,String temp,String cond){
         cityna=city;
         tem=temp;
