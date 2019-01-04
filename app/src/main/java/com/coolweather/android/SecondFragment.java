@@ -49,7 +49,7 @@ public class SecondFragment extends Fragment {
     private RecyclerView mRecy;
     private List<CityInfo> cityInfoList=new ArrayList<>();
     private List<CityInfo> cityInfoList2=new ArrayList<>();
-    private static String cityna="",tem="",con="";
+    private static String cityna="",tem="",con="",oldcity="";
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         View view = inflater.inflate(R.layout.second_fragment, container, false);
@@ -71,25 +71,30 @@ public class SecondFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-                        CityInfo c2=new CityInfo();
-                        c2.setCity(cityna);
-                        c2.setTemp(tem);
-                        c2.setCond(con);
-                        if(con.contains("晴"))
-                            c2.setImageId(R.mipmap.sunny);
-                        else if(con.contains("雨"))
-                            c2.setImageId(R.mipmap.heavy_rain);
-                        else if(con.contains("雪"))
-                            c2.setImageId(R.mipmap.hail);
-                        else if(con.contains("云"))
-                            c2.setImageId(R.mipmap.cloudytosunny);
-                        else if(con.contains("阴"))
-                            c2.setImageId(R.mipmap.cloudy);
-                        c2.save();
-                        adapter.addItem(cityInfoList.size(),c2);
-
-                        swipeRefresh.setRefreshing(false);
+                        if(oldcity.equals(cityna))
+                        {
+                            swipeRefresh.setRefreshing(false);
+                        }
+                        else {
+                            CityInfo c2 = new CityInfo();
+                            c2.setCity(cityna);
+                            c2.setTemp(tem);
+                            c2.setCond(con);
+                            if (con.contains("晴"))
+                                c2.setImageId(R.mipmap.sunny);
+                            else if (con.contains("雨"))
+                                c2.setImageId(R.mipmap.heavy_rain);
+                            else if (con.contains("雪"))
+                                c2.setImageId(R.mipmap.hail);
+                            else if (con.contains("云"))
+                                c2.setImageId(R.mipmap.cloudytosunny);
+                            else if (con.contains("阴"))
+                                c2.setImageId(R.mipmap.cloudy);
+                            c2.save();
+                            adapter.addItem(cityInfoList.size(), c2);
+                            oldcity = cityna;
+                            swipeRefresh.setRefreshing(false);
+                        }
                         //Toast.makeText(getActivity(),"sdgsdhshsdh",Toast.LENGTH_SHORT).show();
                     }
                 },500);
